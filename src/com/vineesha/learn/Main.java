@@ -25,7 +25,7 @@ public class Main {
 
         schoolData.putIfAbsent("class1", studentList);
 
-        System.out.println("Class1"+ studentList);
+        System.out.println("Class1" + studentList);
         // class 2 data
         List<Student> studentList2 = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class Main {
         studentList2.add(student2);
 
         schoolData.putIfAbsent("class2", studentList2);
-        System.out.println("Class2"+ studentList2);
+        System.out.println("Class2" + studentList2);
 
         Map<String, Integer> studentWeightData = new HashMap<>();
         studentWeightData.putIfAbsent("ram", 32);
@@ -53,13 +53,28 @@ public class Main {
         // <<--- Do not modify till here
 
         // Code from below ------>>>
-                for(Map.Entry<String, Integer> m:studentWeightData.entrySet() ){
-            String key=m.getKey();
-            Integer s= m.getValue();
-                    System.out.println("Student name " + key + "\n"+
-                   " Weight is: " + s);
-        }
+//                for(Map.Entry<String, Integer> m:studentWeightData.entrySet() ){
+//            String key=m.getKey();
+//            Integer s= m.getValue();
+//                    System.out.println("Student name " + key + "\n"+
+//                   " Weight is: " + s);
+//        }
+        for (Map.Entry<String, List<Student>> entries : schoolData.entrySet()) {
+            List<Student> students = entries.getValue();
+            System.out.println("Students:" + students);
+            for (Student studentTemp : students) {
+                String studentName = studentTemp.getName();
+                Integer studentWeight = studentWeightData.get(studentName);
 
+                if (studentWeight != null) {
+                    studentTemp.setWeight(studentWeight);
+                }
+                System.out.println("Student name " + studentName + "\n" +
+                        " Weight is: " + studentWeight);
+
+
+            }
+        }
     }
 }
 
